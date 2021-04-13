@@ -1,0 +1,38 @@
+{
+  "name": "advertisements",
+  "version": "1.0.0",
+  "description": "test tak for Lampa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js",
+    "db:start": "./node_modules/sequelize-cli/lib/sequelize db:migrate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yevhenko/Advertisements.git"
+  },
+  "author": "Yevhen Svyrydov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yevhenko/Advertisements/issues"
+  },
+  "homepage": "https://github.com/Yevhenko/Advertisements#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "sequelize": "^6.5.1",
+    "sequelize-cli": "^6.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-import": "^0.13.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
+  }
+}
