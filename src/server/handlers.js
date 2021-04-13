@@ -10,9 +10,12 @@ async function createAdvertisement(body) {
   try {
     const advertisement = await Advertisement.create({
       name: body.name,
+      description: body.description,
+      price: body.price,
+      photo: body.photo,
     });
 
-    return advertisement;
+    return `advertisement id is ${advertisement.id}`;
   } catch (error) {
     console.error(error);
     throw error;
@@ -25,18 +28,48 @@ async function getOneAdvertisement(params) {
       where: { id: params.id },
     });
 
-    return advertisement;
+    return {
+      name: advertisement.name,
+      price: advertisement.price,
+      photo: advertisement.photo,
+    };
   } catch (error) {
     console.error(error);
     throw error;
   }
 }
 
-async function getAllAdvertisements() {
+async function getAllAdvertisements(order) {
   try {
-    const advertisements = await Advertisement.findAll();
+    let advertisements = [];
 
-    return advertisements;
+    if (order === 'asc') {
+      advertisements = await Advertisement.findAll({
+        order: [
+          ['price', 'ASC'],
+          ['createdAt', 'ASC'],
+        ],
+        limit: 10,
+      });
+    } else if (order === 'desc') {
+      advertisements = await Advertisement.findAll({
+        order: [
+          ['price', 'DESC'],
+          ['createdAt', 'DESC'],
+        ],
+        limit: 10,
+      });
+    } else {
+      advertisements = await Advertisement.findAll({
+        limit: 10,
+      });
+    }
+
+    return advertisements.map((a) => ({
+      name: a.name,
+      price: a.price,
+      photo: a.photo,
+    }));
   } catch (error) {
     console.error(error);
     throw error;

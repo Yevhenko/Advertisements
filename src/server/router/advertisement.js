@@ -11,7 +11,7 @@ advertisement.post('/advertisement', async (req, res, next) => {
     if (!body) res.status(404).send('Not found!');
     const response = await createAdvertisement(body);
 
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
     next(error);
   }
@@ -33,7 +33,11 @@ advertisement.get('/advertisement/:id', async (req, res, next) => {
 
 advertisement.get('/advertisements', async (req, res, next) => {
   try {
-    const response = await getAllAdvertisements();
+    const {
+      query: { order },
+    } = req;
+
+    const response = await getAllAdvertisements(order);
 
     res.json(response);
   } catch (error) {
