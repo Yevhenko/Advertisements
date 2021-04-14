@@ -8,6 +8,7 @@ function errorHandler(err, req, res) {
 
 async function createAdvertisement(body) {
   try {
+    if (body.photo.length > 3) throw new Error('too many photos'); // Column "photo" is of type "jsonB", so client should send an array of links like strings
     const advertisement = await Advertisement.create({
       name: body.name,
       description: body.description,
@@ -31,7 +32,7 @@ async function getOneAdvertisement(params) {
     return {
       name: advertisement.name,
       price: advertisement.price,
-      photo: advertisement.photo,
+      photo: advertisement.photo[0],
     };
   } catch (error) {
     console.error(error);
@@ -68,7 +69,7 @@ async function getAllAdvertisements(order) {
     return advertisements.map((a) => ({
       name: a.name,
       price: a.price,
-      photo: a.photo,
+      photo: a.photo[0],
     }));
   } catch (error) {
     console.error(error);
