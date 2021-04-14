@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING(200),
       description: DataTypes.STRING(1000),
       price: DataTypes.DECIMAL,
-      photo: DataTypes.STRING,
+      photo: DataTypes.JSONB,
     },
     {},
   );

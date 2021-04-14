@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false,
       },
       photo: {
-        type: Sequelize.STRING,
+        type: Sequelize.JSONB,
         allowNull: false,
       },
       createdAt: {
